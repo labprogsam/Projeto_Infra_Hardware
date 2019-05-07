@@ -10,7 +10,7 @@ module mux8x1(
     input[31:0] in7,
     output reg[31:0] out);
 
-    always@(state) begin
+    always@(*) begin
         case (state)
             3'b000: out = in0;
             3'b001: out = in1; 

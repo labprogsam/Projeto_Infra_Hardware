@@ -6,7 +6,7 @@ module mux4x1(
     input[31:0] in3,  
     output reg[31:0] out);
 
-    always@(state) begin
+    always@(*) begin
         case (state)
             2'b00: out = in0;
             2'b01: out = in1; 
