@@ -16,7 +16,8 @@ module UnidadeControle (
     output reg IRWrite,
     output reg AWrite,
     output reg BWrite,
-    output reg ALUWrite
+    output reg ALUWrite,
+    output reg RegWrite
     
 );
 
@@ -26,17 +27,14 @@ module UnidadeControle (
     parameter Fetch = 7'd1;
     parameter Wait_fetch = 7'd2;
     parameter Decode = 7'd3;
-    parameter SaveResult = 7'd4;
-    
-    //Funcs
-    
-    parameter ADD = 7'h20;
+    parameter SaveResult = 7'd4;   
+    parameter ADD = 7'd5;
 
     initial begin
         state = Fetch;
     end
 	
-    always @ (posedge clock or reset) begin
+    always @ (posedge clock or posedge reset) begin
 		if (reset) begin
 			state = Reset;
 		end
@@ -75,7 +73,6 @@ module UnidadeControle (
                 
                 case(op)
                     6'b000000: begin
-
                         case(funct) 
 
                             6'b100000: begin
